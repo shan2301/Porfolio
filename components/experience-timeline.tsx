@@ -18,48 +18,39 @@ interface ExperienceTimelineProps {
 export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
   return (
     <div className="relative">
-      {/* Vertical line */}
-      <div className="absolute left-6 top-0 bottom-0 w-px bg-primary/20" />
-      
-      <div className="space-y-12">
+      <div className="absolute left-5 top-2 bottom-2 w-px bg-border" />
+
+      <div className="space-y-8">
         {items.map((item, index) => (
-          <div key={index} className="relative flex gap-8">
-            {/* Timeline icon */}
+          <div key={index} className="relative flex gap-6 md:gap-8">
             <div className="relative z-10 flex-shrink-0">
-              <div className={`w-12 h-12 rounded-full border-2 border-white flex items-center justify-center shadow-lg shadow-primary/20 ${
-                item.type === 'education' ? 'bg-primary' : 'bg-primary/90'
-              }`}>
-                {item.type === 'education' ? (
-                  <GraduationCap className="h-6 w-6 text-white" />
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center border border-border bg-white shadow-sm ${
+                  item.type === "education" ? "text-primary" : "text-foreground"
+                }`}
+              >
+                {item.type === "education" ? (
+                  <GraduationCap className="h-5 w-5" />
                 ) : (
-                  <Briefcase className="h-6 w-6 text-white" />
+                  <Briefcase className="h-5 w-5" />
                 )}
               </div>
             </div>
-            
-            {/* Content */}
-            <div className="flex-1 pb-8">
-              <div className="bg-white border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 rounded-none p-8">
-                <div className="mb-3">
-                  <div className="text-sm font-medium text-primary/70 uppercase tracking-wide mb-2">
-                    {item.period}
-                  </div>
-                  <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-lg text-primary font-medium mb-1">
-                    {item.organization}
-                  </p>
-                  <p className="text-base text-muted-foreground">
-                    {item.location}
-                  </p>
-                  {item.description && (
-                    <p className="text-muted-foreground leading-relaxed mt-3">
-                      {item.description}
-                    </p>
-                  )}
-                </div>
+
+            <div className="flex-1 surface-panel rounded-md p-6 md:p-8 hover:bg-white transition-colors">
+              <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
+                {item.period}
               </div>
+              <h3 className="font-headline text-xl md:text-2xl font-semibold tracking-tight mb-1">
+                {item.title}
+              </h3>
+              <p className="text-primary font-medium mb-0.5">{item.organization}</p>
+              <p className="text-sm text-muted-foreground mb-3">{item.location}</p>
+              {item.description && (
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
+              )}
             </div>
           </div>
         ))}
@@ -67,4 +58,3 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
     </div>
   );
 }
-

@@ -1,84 +1,69 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-white pt-16">
-      <div className="max-w-[1440px] mx-auto px-8 py-20">
-        <div className="mb-20">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-foreground mb-6">
+    <main className="min-h-screen pt-16">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 py-16 md:py-24">
+        <div className="mb-14 md:mb-20 max-w-3xl animate-reveal-up">
+          <p className="text-sm font-semibold tracking-[0.18em] uppercase text-primary mb-4">
+            Selected work
+          </p>
+          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-5">
             Projects
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
-            Enterprise Power Platform and Microsoft 365 solutions for clients across the USA, UK, Canada and Japan
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Enterprise Power Platform and Microsoft 365 solutions for clients
+            across the USA, UK, Canada and Japan.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-0 border-t border-border/80">
           {projects.map((project, index) => (
-            <Card 
-              key={index} 
-              className="border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 bg-white rounded-none shadow-sm flex flex-col h-full"
+            <Link
+              key={project.id}
+              href={`/projects/${project.id}`}
+              className="group grid md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-b border-border/80 hover:bg-white/50 transition-colors -mx-5 px-5 sm:-mx-8 sm:px-8"
             >
-              <CardHeader className="pb-4">
-                <CardTitle className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-2">
+              <div className="md:col-span-1 font-headline text-sm text-primary/70 tabular-nums pt-1">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+              <div className="md:col-span-5">
+                <h2 className="font-headline text-2xl md:text-3xl font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors mb-2">
                   {project.title}
-                </CardTitle>
-                <CardDescription className="text-base text-primary font-medium">
-                  {project.client}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6 flex-grow">
-                <div>
-                  <h4 className="font-semibold mb-2 text-primary text-sm uppercase tracking-wide">Problem</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{project.problem}</p>
+                </h2>
+                <p className="text-primary font-medium mb-4">{project.client}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.slice(0, 4).map((tech) => (
+                    <Badge
+                      key={tech}
+                      variant="secondary"
+                      className="font-normal text-xs bg-secondary text-secondary-foreground border-0 rounded-md px-2.5 py-1"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
                 </div>
-
-                <div>
-                  <h4 className="font-semibold mb-2 text-primary text-sm uppercase tracking-wide">Solution</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{project.solution}</p>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-2 text-primary text-sm uppercase tracking-wide">My Role</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{project.role}</p>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-2 text-primary text-sm uppercase tracking-wide">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="font-normal text-xs bg-primary/10 text-primary border-0 rounded-none px-3 py-1">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-2 text-primary text-sm uppercase tracking-wide">Impact</h4>
-                  <ul className="list-none space-y-2 text-sm text-muted-foreground">
-                    {project.impact.map((impact, impactIndex) => (
-                      <li key={impactIndex} className="leading-relaxed">• {impact}</li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-              <CardFooter className="pt-6 mt-auto">
-                <Link href={`/projects/${project.id}`} className="w-full">
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 rounded-none border-0 font-medium shadow-md shadow-primary/20">
-                    View Details
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+              </div>
+              <div className="md:col-span-5 flex flex-col justify-center">
+                <p className="text-sm uppercase tracking-wider text-primary/80 font-semibold mb-2">
+                  Outcome
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  {project.impact[0]}
+                </p>
+              </div>
+              <div className="md:col-span-1 flex md:justify-end items-center">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white/60 text-foreground group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
     </main>
   );
 }
-

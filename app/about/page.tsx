@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ExperienceTimeline } from "@/components/experience-timeline";
 import Link from "next/link";
-import { FileText, Phone, Mail, Linkedin, MapPin } from "lucide-react";
+import { FileText, Phone, Mail, Linkedin, MapPin, ArrowUpRight } from "lucide-react";
 
 export default function AboutPage() {
   const timelineItems = [
@@ -40,7 +40,7 @@ export default function AboutPage() {
   const certifications = [
     {
       name: 'Microsoft Applied Skills: Create and Manage Automated Processes by Using Power Automate',
-      file: null as string | null,
+      file: '/images/Credentials - shashanks-8473 _ Microsoft Learn.pdf',
       issued: null as string | null
     },
     {
@@ -50,13 +50,18 @@ export default function AboutPage() {
     },
     {
       name: 'Salesforce Associate',
-      file: null as string | null,
+      file: '/images/SF_Associate.pdf',
       issued: null as string | null
     },
     {
       name: 'Professional Scrum Master I',
       file: '/images/PSM1.pdf',
       issued: 'April 7, 2025'
+    },
+    {
+      name: 'Programming using C & C++',
+      file: '/images/C&C++.pdf',
+      issued: 'November 25, 2013'
     }
   ];
 
@@ -92,209 +97,195 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white pt-16">
-      <div className="max-w-[1440px] mx-auto px-8 py-20">
-        {/* Header */}
-        <div className="mb-20">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-foreground mb-6">
+    <main className="min-h-screen pt-16">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 py-16 md:py-24">
+        <div className="mb-16 md:mb-24 animate-reveal-up">
+          <p className="text-sm font-semibold tracking-[0.18em] uppercase text-primary mb-4">
+            Profile
+          </p>
+          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground mb-4">
             About
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl flex items-center gap-2">
+          <p className="text-lg md:text-xl text-muted-foreground flex items-center gap-2">
             <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
             Chennai, India
           </p>
         </div>
 
-        {/* Content Grid */}
-        <div className="grid md:grid-cols-2 gap-20 items-start mb-20">
-          {/* Profile Image */}
-          <div className="relative">
-            <div className="aspect-square relative overflow-hidden bg-primary/5 border-2 border-primary/20">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20 md:mb-28">
+          <div className="lg:col-span-5 relative animate-image-settle">
+            <div className="aspect-[4/5] relative overflow-hidden rounded-md bg-secondary">
               <Image
                 src="/images/profileimg.jpeg"
                 alt="Shashank Sundar - Power Platform Developer"
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
           </div>
 
-          {/* Professional Summary */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6">
-                Professional Summary
-              </h2>
-              
-              <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
-                <p>
-                  I am a <strong className="text-foreground font-semibold">Power Platform and Microsoft 365</strong> technology professional with <strong className="text-foreground font-semibold">5+ years</strong> of hands-on experience delivering enterprise business applications, SharePoint solutions, workflow automation and analytics for clients across the <strong className="text-foreground font-semibold">USA, UK, Canada and Japan</strong>.
-                </p>
-
-                <p>
-                  Hands-on across <strong className="text-foreground font-semibold">Power Apps, Power Automate, Power Pages, Dataverse, SharePoint Online, SPFx, React.js, TypeScript, Fluent UI and Power BI</strong>, with enterprise integration using Microsoft Graph API, Azure Functions, Azure Logic Apps, REST APIs, Dynamics 365, SAP, SQL and third-party systems.
-                </p>
-
-                <p>
-                  Experienced in SharePoint architecture, migration, governance and security, advanced Power BI modelling, embedded analytics, ALM, UAT, deployment and production support. MSc Aerospace Technologies, University of Nottingham (UK).
-                </p>
-              </div>
+          <div className="lg:col-span-7 space-y-6 animate-reveal-up delay-200">
+            <h2 className="font-headline text-3xl md:text-4xl font-semibold tracking-tight">
+              Professional Summary
+            </h2>
+            <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p>
+                I am a <strong className="text-foreground font-semibold">Power Platform and Microsoft 365</strong> technology professional with <strong className="text-foreground font-semibold">5+ years</strong> of hands-on experience delivering enterprise business applications, SharePoint solutions, workflow automation and analytics for clients across the <strong className="text-foreground font-semibold">USA, UK, Canada and Japan</strong>.
+              </p>
+              <p>
+                Hands-on across <strong className="text-foreground font-semibold">Power Apps, Power Automate, Power Pages, Dataverse, SharePoint Online, SPFx, React.js, TypeScript, Fluent UI and Power BI</strong>, with enterprise integration using Microsoft Graph API, Azure Functions, Azure Logic Apps, REST APIs, Dynamics 365, SAP, SQL and third-party systems.
+              </p>
+              <p>
+                Experienced in SharePoint architecture, migration, governance and security, advanced Power BI modelling, embedded analytics, ALM, UAT, deployment and production support. MSc Aerospace Technologies, University of Nottingham (UK).
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Key Achievements */}
-        <div className="border-t border-primary/20 pt-20 mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-12">
+        <section className="section-rule pt-16 md:pt-24 mb-20 md:mb-28">
+          <h2 className="font-headline text-3xl md:text-5xl font-semibold tracking-tight mb-10 md:mb-14">
             Key Achievements
           </h2>
-          <ul className="space-y-4 max-w-4xl">
+          <ul className="space-y-0 max-w-4xl">
             {achievements.map((item, index) => (
-              <li key={index} className="flex gap-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-                <span className="text-primary font-semibold flex-shrink-0">0{index + 1}</span>
+              <li
+                key={index}
+                className="flex gap-5 md:gap-8 py-6 border-b border-border/80 text-base md:text-lg text-muted-foreground leading-relaxed"
+              >
+                <span className="font-headline text-primary font-semibold flex-shrink-0 tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
-        </div>
+        </section>
 
-        {/* Core Skills */}
-        <div className="border-t border-primary/20 pt-20 mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-12">
+        <section className="section-rule pt-16 md:pt-24 mb-20 md:mb-28">
+          <h2 className="font-headline text-3xl md:text-5xl font-semibold tracking-tight mb-10 md:mb-14">
             Core Skills
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-px bg-border/60 rounded-md overflow-hidden border border-border/60">
             {skillGroups.map((group, index) => (
               <div
                 key={index}
-                className="border border-primary/20 p-6 bg-white hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                className="bg-[hsl(var(--background))] p-6 md:p-8 hover:bg-white/80 transition-colors"
               >
-                <h3 className="text-xl font-semibold text-primary mb-3 tracking-tight">
+                <h3 className="font-headline text-lg md:text-xl font-semibold text-primary mb-3">
                   {group.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   {group.skills}
                 </p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Education & Experience Timeline */}
-        <div className="border-t border-primary/20 pt-20 mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-12">
+        <section className="section-rule pt-16 md:pt-24 mb-20 md:mb-28">
+          <h2 className="font-headline text-3xl md:text-5xl font-semibold tracking-tight mb-10 md:mb-14">
             Education & Experience
           </h2>
           <ExperienceTimeline items={timelineItems} />
-        </div>
+        </section>
 
-        {/* Certifications */}
-        <div className="border-t border-primary/20 pt-20 mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-12">
+        <section className="section-rule pt-16 md:pt-24 mb-20 md:mb-28">
+          <h2 className="font-headline text-3xl md:text-5xl font-semibold tracking-tight mb-10 md:mb-14">
             Certifications & Credentials
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-4">
             {certifications.map((cert, index) => {
-              const content = (
+              const inner = (
                 <>
-                  <div className="flex items-start gap-4 mb-4">
-                    <FileText className="h-6 w-6 text-primary group-hover:text-primary/80 transition-colors flex-shrink-0 mt-1" />
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        {cert.name}
-                      </h3>
-                      {cert.issued && (
-                        <p className="text-sm text-muted-foreground uppercase tracking-wide">
-                          Issued: {cert.issued}
-                        </p>
-                      )}
-                    </div>
+                  <FileText className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-headline text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+                      {cert.name}
+                    </h3>
+                    {cert.issued && (
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
+                        Issued {cert.issued}
+                      </p>
+                    )}
+                    {cert.file && (
+                      <span className="inline-flex items-center gap-1 text-sm text-primary font-medium">
+                        View certificate
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </span>
+                    )}
                   </div>
-                  {cert.file && (
-                    <p className="text-sm text-primary group-hover:text-primary/80 transition-colors">
-                      View Certificate →
-                    </p>
-                  )}
                 </>
               );
 
-              const className = "group border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 p-6 bg-white block";
+              const className =
+                "group flex gap-4 surface-panel rounded-md p-5 hover:border-primary/35 hover:bg-white transition-all";
 
               return cert.file ? (
                 <Link
                   key={index}
-                  href={cert.file}
+                  href={encodeURI(cert.file)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={className}
                 >
-                  {content}
+                  {inner}
                 </Link>
               ) : (
                 <div key={index} className={className}>
-                  {content}
+                  {inner}
                 </div>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Contact Information */}
-        <div className="border-t border-primary/20 pt-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-12">
+        <section className="section-rule pt-16 md:pt-24">
+          <h2 className="font-headline text-3xl md:text-5xl font-semibold tracking-tight mb-10 md:mb-14">
             Contact
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-3 gap-4">
             <a
               href="tel:+918838731384"
-              className="group border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 p-6 bg-white flex items-start gap-4"
+              className="group surface-panel rounded-md p-6 flex items-start gap-4 hover:border-primary/35 hover:bg-white transition-all"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                <Phone className="h-6 w-6 text-primary" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">Phone</h3>
-                <p className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
+              <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Phone</h3>
+                <p className="font-medium text-foreground group-hover:text-primary transition-colors">
                   +91 883-873-1384
                 </p>
               </div>
             </a>
-
             <a
               href="mailto:sundarshashank@gmail.com"
-              className="group border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 p-6 bg-white flex items-start gap-4"
+              className="group surface-panel rounded-md p-6 flex items-start gap-4 hover:border-primary/35 hover:bg-white transition-all"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                <Mail className="h-6 w-6 text-primary" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">Email</h3>
-                <p className="text-lg font-medium text-foreground group-hover:text-primary transition-colors break-all">
+              <Mail className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Email</h3>
+                <p className="font-medium text-foreground group-hover:text-primary transition-colors break-all">
                   sundarshashank@gmail.com
                 </p>
               </div>
             </a>
-
             <Link
               href="https://www.linkedin.com/in/shashank2301/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 p-6 bg-white flex items-start gap-4"
+              className="group surface-panel rounded-md p-6 flex items-start gap-4 hover:border-primary/35 hover:bg-white transition-all"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                <Linkedin className="h-6 w-6 text-primary" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">LinkedIn</h3>
-                <p className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
+              <Linkedin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">LinkedIn</h3>
+                <p className="font-medium text-foreground group-hover:text-primary transition-colors">
                   linkedin.com/in/shashank2301
                 </p>
               </div>
             </Link>
           </div>
-        </div>
+        </section>
       </div>
     </main>
   );

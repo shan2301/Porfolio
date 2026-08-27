@@ -5,16 +5,15 @@ import { Download } from "lucide-react";
 
 export function CVDownloadButton() {
   const handleDownload = () => {
-    // Open CV in new tab for download
-    const cvPath = '/Shashank Sundar_NewCV.pdf';
-    window.open(cvPath, '_blank');
+    const cvPath = '/Shashank S_Senior Power Platform Developer.pdf';
+    window.open(encodeURI(cvPath), '_blank');
   };
 
   return (
     <Button 
       size="lg" 
       variant="outline" 
-      className="w-full sm:w-auto text-base px-8 h-14 border-primary/30 hover:bg-primary/5 hover:border-primary/50 rounded-none font-medium text-foreground"
+      className="w-full sm:w-auto text-base px-7 h-12 rounded-md border-foreground/15 bg-white/50 hover:bg-white hover:border-primary/40 font-semibold text-foreground"
       onClick={handleDownload}
     >
       <Download className="mr-2 h-4 w-4" />
@@ -22,4 +21,3 @@ export function CVDownloadButton() {
     </Button>
   );
 }
-

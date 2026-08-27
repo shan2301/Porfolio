@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { getProjectById } from "@/lib/projects";
 import { ProjectTimeline } from "@/components/project-timeline";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -21,96 +20,99 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-white pt-16">
-      <div className="max-w-[1440px] mx-auto px-8 py-20">
-        {/* Back Button */}
-        <div className="mb-12">
+    <main className="min-h-screen pt-16">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 py-16 md:py-24">
+        <div className="mb-10">
           <Link href="/projects">
-            <Button variant="ghost" className="mb-4 text-muted-foreground hover:text-primary rounded-none border-0 px-0">
+            <Button
+              variant="ghost"
+              className="mb-6 text-muted-foreground hover:text-primary rounded-md px-0 hover:bg-transparent"
+            >
               ← Back to Projects
             </Button>
           </Link>
         </div>
 
-        {/* Header */}
-        <div className="mb-16">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground mb-6">
+        <header className="mb-14 md:mb-20 max-w-4xl animate-reveal-up">
+          <p className="text-sm font-semibold tracking-[0.18em] uppercase text-primary mb-4">
+            Case study
+          </p>
+          <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4">
             {project.title}
           </h1>
-          <p className="text-2xl md:text-3xl text-primary mb-8 font-medium">
+          <p className="text-xl md:text-2xl text-primary font-medium mb-8">
             {project.client}
           </p>
-          
+
           <div className="flex flex-wrap gap-8 mb-8">
             <div>
-              <span className="text-sm text-primary/70 uppercase tracking-wide block mb-1">Your Role</span>
-              <p className="text-lg font-medium text-foreground">{project.role}</p>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">
+                Role
+              </span>
+              <p className="text-base font-medium text-foreground">{project.role}</p>
             </div>
             <div>
-              <span className="text-sm text-primary/70 uppercase tracking-wide block mb-1">Duration</span>
-              <p className="text-lg font-medium text-foreground">{project.duration}</p>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">
+                Duration
+              </span>
+              <p className="text-base font-medium text-foreground">{project.duration}</p>
             </div>
           </div>
 
-          <div>
-            <span className="text-sm text-primary/70 uppercase tracking-wide block mb-3">Tech Stack</span>
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech, index) => (
-                <Badge key={index} variant="secondary" className="font-normal text-xs bg-primary/10 text-primary border-0 rounded-none px-3 py-1">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
+              <Badge
+                key={tech}
+                variant="secondary"
+                className="font-normal text-xs bg-secondary text-secondary-foreground border-0 rounded-md px-2.5 py-1"
+              >
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </header>
+
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16 md:mb-24">
+          <div className="surface-panel rounded-md p-6 md:p-8">
+            <h2 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
+              Problem
+            </h2>
+            <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+              {project.problem}
+            </p>
+          </div>
+          <div className="surface-panel rounded-md p-6 md:p-8">
+            <h2 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">
+              Solution
+            </h2>
+            <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+              {project.solution}
+            </p>
           </div>
         </div>
 
-        {/* Problem & Solution */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
-          <Card className="border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 rounded-none shadow-sm bg-white">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-primary uppercase tracking-wide">Problem</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
-            </CardContent>
-          </Card>
-          <Card className="border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 rounded-none shadow-sm bg-white">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-primary uppercase tracking-wide">Solution</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Timeline */}
-        <div className="mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-12">Timeline Highlights</h2>
+        <section className="mb-16 md:mb-24">
+          <h2 className="font-headline text-3xl md:text-4xl font-semibold tracking-tight mb-10">
+            Timeline Highlights
+          </h2>
           <ProjectTimeline phases={project.timeline} />
-        </div>
+        </section>
 
-        {/* Outcome Box */}
-        <Card className="bg-primary text-primary-foreground rounded-none border-0 shadow-xl shadow-primary/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl font-semibold">
-              <CheckCircle2 className="h-6 w-6" />
-              Impact & Outcomes
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-4">
-              {project.impact.map((impact, index) => (
-                <li key={index} className="flex items-start gap-3 text-lg">
-                  <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                  <span>{impact}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <section className="rounded-md bg-primary text-primary-foreground p-8 md:p-12">
+          <h2 className="font-headline text-2xl md:text-3xl font-semibold mb-6 flex items-center gap-3">
+            <CheckCircle2 className="h-6 w-6 flex-shrink-0" />
+            Impact & Outcomes
+          </h2>
+          <ul className="space-y-4">
+            {project.impact.map((impact) => (
+              <li key={impact} className="flex items-start gap-3 text-base md:text-lg">
+                <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0 opacity-90" />
+                <span>{impact}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </main>
   );
 }
-
