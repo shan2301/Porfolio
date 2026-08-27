@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shashank's Portfolio | Senior Power Platform Consultant",
-  description: "Senior Power Platform Consultant | Automation Architect | Technical BA",
+  title: "Shashank Sundar | Power Platform Developer",
+  description: "Power Platform Developer | SharePoint | Power BI — enterprise apps, automation, and analytics for global clients",
 };
 
 export default function RootLayout({

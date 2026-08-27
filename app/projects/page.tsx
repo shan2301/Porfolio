@@ -13,7 +13,7 @@ export default function ProjectsPage() {
             Projects
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
-            Showcasing impactful solutions delivered across industries
+            Enterprise Power Platform and Microsoft 365 solutions for clients across the USA, UK, Canada and Japan
           </p>
         </div>
 

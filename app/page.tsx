@@ -11,22 +11,22 @@ export default function Home() {
           {/* Main Headline */}
           <div className="max-w-5xl">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tight leading-[1.05] text-foreground mb-6">
-              Senior Power Platform
+              Power Platform
               <br />
-              <span className="text-primary">Consultant</span>
+              <span className="text-primary">Developer</span>
             </h1>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-muted-foreground mb-12 tracking-tight">
-              Automation Architect | Technical BA
+              SharePoint | Power BI | Microsoft 365
             </h2>
           </div>
 
           {/* Credentials */}
           <div className="max-w-3xl space-y-6 mb-16">
             <p className="text-xl md:text-2xl text-foreground/90 font-medium">
-              MSc (University of Nottingham, UK)
+              MSc (University of Nottingham, UK) · Based in Chennai, India
             </p>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              4+ years SaaS experience in Power Platform + Automation + Front-End development
+              5+ years delivering enterprise Power Apps, Power Automate, SharePoint, and Power BI solutions for clients across the USA, UK, Canada, and Japan.
             </p>
           </div>
 
@@ -56,4 +56,3 @@ export default function Home() {
     </main>
   );
 }
-
