@@ -11,10 +11,11 @@ import {
   FileText,
   GraduationCap,
   Briefcase,
-  Plane,
+  Rocket,
 } from "lucide-react";
 import { CVDownloadButton } from "@/components/cv-download-button";
 import { FlightJourney } from "./flight-journey";
+import { AvionicsBackdrop } from "./avionics-backdrop";
 import { SkillOrbit } from "./skill-orbit";
 import { ScrollReveal } from "./scroll-reveal";
 import {
@@ -28,6 +29,7 @@ import {
 export function PortfolioPage() {
   return (
     <>
+      <AvionicsBackdrop />
       <FlightJourney />
 
       <main className="relative z-10 pt-16">
@@ -43,9 +45,9 @@ export function PortfolioPage() {
             <div>
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 hangar-badge mb-6">
-                  <Plane className="w-4 h-4 text-runway" />
+                  <Rocket className="w-4 h-4 text-runway" />
                   <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                    B-2 Spirit · Hangar Bay · Clear for Departure
+                    Falcon Mission · Launch Pad · Go for Liftoff
                   </span>
                 </div>
               </ScrollReveal>
@@ -102,7 +104,7 @@ export function PortfolioPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-hangar via-transparent to-runway/5" />
                 </div>
                 <div className="absolute -bottom-4 -left-4 hangar-panel px-4 py-2 font-mono text-xs text-runway">
-                  PILOT ID: SS-2301
+                  CDR · SS-2301
                 </div>
               </div>
             </ScrollReveal>
@@ -116,7 +118,7 @@ export function PortfolioPage() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="runway-marker">01</span>
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                  Runway · Take-Off
+                  Ascent · Mission Brief
                 </span>
               </div>
               <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
@@ -196,7 +198,7 @@ export function PortfolioPage() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="runway-marker">02</span>
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-sky-glow">
-                  Cruise Altitude · In Journey
+                  Transit · Navigation Systems
                 </span>
               </div>
               <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
@@ -234,7 +236,7 @@ export function PortfolioPage() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="runway-marker">03</span>
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                  Active Missions
+                  Lunar Manifest · Missions
                 </span>
               </div>
               <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
@@ -293,11 +295,11 @@ export function PortfolioPage() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="runway-marker">04</span>
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                  Final Approach · Landing
+                  Re-entry · Soft Landing
                 </span>
               </div>
               <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
-                Clear to Land
+                Splashdown Complete
               </h2>
             </ScrollReveal>
 
@@ -412,7 +414,7 @@ export function PortfolioPage() {
             <ScrollReveal delay={300}>
               <div className="mt-20 text-center">
                 <p className="font-mono text-xs uppercase tracking-[0.3em] text-runway/60 mb-2">
-                  End of Route
+                  Mission Complete
                 </p>
                 <p className="text-muted-foreground text-sm">
                   Chennai, India · Available for global missions

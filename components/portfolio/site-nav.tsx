@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "#hangar", label: "Hangar" },
+  { href: "#hangar", label: "Pad" },
   { href: "#takeoff", label: "Brief" },
   { href: "#cruise", label: "Skills" },
   { href: "#mission", label: "Missions" },
@@ -36,13 +36,13 @@ export function SiteNav() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-hangar/85 backdrop-blur-xl">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-hud/20 bg-hangar/90 backdrop-blur-xl">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 flex h-16 items-center justify-between">
         <a
           href="#hangar"
           className="font-headline text-base sm:text-lg font-semibold tracking-tight text-foreground hover:text-runway transition-colors"
         >
-          SS<span className="text-runway">.</span>Hangar
+          SS<span className="text-runway">.</span>Launch
         </a>
         <div className="flex items-center gap-4 sm:gap-6">
           {navLinks.map((link) => {

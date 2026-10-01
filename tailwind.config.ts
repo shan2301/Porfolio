@@ -34,6 +34,7 @@ const config = {
         "steel-light": "hsl(var(--steel-light))",
         "sky-glow": "hsl(var(--sky-glow))",
         "sky-deep": "hsl(var(--sky-deep))",
+        hud: "hsl(var(--hud))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

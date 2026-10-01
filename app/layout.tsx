@@ -37,7 +37,7 @@ export default function RootLayout({
               Shashank Sundar
             </p>
             <p className="font-mono text-xs uppercase tracking-wider text-runway/70">
-              Hangar · Runway · Cruise · Landing
+              Pad · Ascent · Moon · Return · Landing
             </p>
             <a
               href="mailto:sundarshashank@gmail.com"
