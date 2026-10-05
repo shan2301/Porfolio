@@ -45,10 +45,10 @@ export function SkillOrbit() {
     <div className="relative min-h-[420px] sm:min-h-[520px] flex items-center justify-center mx-auto max-w-3xl">
       <div className="absolute z-10 w-28 h-28 sm:w-36 sm:h-36 rounded-full hangar-panel flex flex-col items-center justify-center animate-hub-pulse">
         <span className="text-runway text-xs uppercase tracking-widest font-mono">
-          Tech Stack
+          Stack
         </span>
         <span className="font-headline text-2xl sm:text-3xl font-bold text-sky-glow mt-1">
-          16+
+          {skillTools.length}
         </span>
         <span className="text-steel-light text-xs">Tools</span>
       </div>

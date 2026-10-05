@@ -4,40 +4,40 @@
 
 @layer base {
   :root {
-    /* Glass cockpit / avionics palette */
-    --background: 210 28% 7%;
-    --foreground: 168 45% 88%;
-    --card: 210 30% 10%;
-    --card-foreground: 168 40% 90%;
-    --popover: 210 30% 10%;
-    --popover-foreground: 168 40% 90%;
-    --primary: 38 92% 50%;
-    --primary-foreground: 210 28% 7%;
-    --secondary: 210 25% 14%;
-    --secondary-foreground: 168 25% 80%;
-    --muted: 210 22% 12%;
-    --muted-foreground: 190 12% 55%;
-    --accent: 168 70% 42%;
-    --accent-foreground: 210 28% 7%;
+    /* Executive atelier — cool pearl, ink navy, champagne brass */
+    --background: 210 24% 97%;
+    --foreground: 222 35% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 35% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 35% 12%;
+    --primary: 222 40% 16%;
+    --primary-foreground: 40 33% 96%;
+    --secondary: 210 18% 93%;
+    --secondary-foreground: 222 30% 20%;
+    --muted: 210 16% 94%;
+    --muted-foreground: 220 10% 42%;
+    --accent: 38 32% 48%;
+    --accent-foreground: 40 33% 98%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 168 25% 22%;
-    --input: 168 25% 22%;
-    --ring: 168 70% 42%;
-    --radius: 0.25rem;
+    --border: 214 16% 86%;
+    --input: 214 16% 86%;
+    --ring: 38 32% 48%;
+    --radius: 0.125rem;
 
-    /* Avionics tokens */
-    --hangar: 210 32% 5%;
-    --hangar-floor: 210 28% 8%;
-    --steel: 210 12% 32%;
-    --steel-light: 190 20% 55%;
-    --runway: 38 92% 50%;
-    --runway-dim: 38 70% 35%;
-    --sky-glow: 168 80% 55%;
-    --sky-deep: 210 40% 10%;
-    --hud: 168 85% 48%;
-    --hud-dim: 168 40% 22%;
-    --panel: 210 25% 9%;
+    /* Legacy token aliases used across components */
+    --hangar: 210 24% 97%;
+    --hangar-floor: 210 20% 94%;
+    --steel: 220 12% 45%;
+    --steel-light: 220 10% 42%;
+    --runway: 38 32% 48%;
+    --runway-dim: 38 28% 38%;
+    --sky-glow: 222 40% 22%;
+    --sky-deep: 210 24% 92%;
+    --hud: 38 32% 48%;
+    --hud-dim: 38 20% 70%;
+    --panel: 0 0% 100%;
   }
 }
 
@@ -52,93 +52,89 @@
 
   body {
     @apply bg-background text-foreground antialiased font-sans;
-    background-color: hsl(var(--hangar));
+    background-color: hsl(var(--background));
     background-image:
-      radial-gradient(ellipse 90% 55% at 50% 0%, hsl(168 40% 14% / 0.35), transparent 55%),
-      radial-gradient(ellipse 70% 40% at 50% 100%, hsl(210 40% 8% / 0.9), transparent 50%),
-      linear-gradient(180deg, hsl(210 32% 6%), hsl(210 28% 5%) 40%, hsl(210 30% 7%));
+      radial-gradient(ellipse 90% 60% at 10% -10%, hsl(38 40% 90% / 0.55), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 100% 0%, hsl(210 30% 90% / 0.65), transparent 55%),
+      linear-gradient(180deg, hsl(210 24% 98%), hsl(210 18% 95%));
     background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline tracking-tight text-foreground;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
+    font-weight: 500;
   }
 }
 
 @layer components {
   .hangar-panel {
-    @apply backdrop-blur-md rounded-sm;
-    background:
-      linear-gradient(180deg, hsl(210 28% 12% / 0.92), hsl(210 30% 9% / 0.88));
-    border: 1px solid hsl(var(--hud) / 0.28);
-    box-shadow:
-      inset 0 1px 0 hsl(var(--hud) / 0.12),
-      inset 0 0 24px hsl(var(--hud) / 0.04),
-      0 0 0 1px hsl(210 30% 4% / 0.8),
-      0 8px 32px hsl(210 40% 2% / 0.55);
+    @apply rounded-sm;
+    background: hsl(0 0% 100% / 0.78);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 0 hsl(0 0% 100% / 0.8) inset;
+    backdrop-filter: blur(8px);
   }
 
   .hangar-badge {
     @apply px-4 py-2 rounded-sm;
-    border: 1px solid hsl(var(--hud) / 0.35);
-    background: hsl(var(--hud) / 0.08);
-    box-shadow: inset 0 0 12px hsl(var(--hud) / 0.08);
+    border: 1px solid hsl(var(--runway) / 0.35);
+    background: hsl(var(--runway) / 0.06);
+    color: hsl(var(--runway-dim));
   }
 
   .runway-marker {
-    @apply inline-flex items-center justify-center w-8 h-8 rounded-sm font-mono text-sm font-bold;
-    color: hsl(var(--hud));
-    background: hsl(var(--hud) / 0.1);
-    border: 1px solid hsl(var(--hud) / 0.4);
-    box-shadow: 0 0 12px hsl(var(--hud) / 0.15);
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-sm font-mono text-xs font-semibold tracking-wider;
+    color: hsl(var(--runway-dim));
+    background: hsl(var(--runway) / 0.08);
+    border: 1px solid hsl(var(--runway) / 0.3);
   }
 
   .btn-runway {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-sm bg-primary text-primary-foreground font-semibold text-sm transition-all;
-    box-shadow: 0 0 20px hsl(var(--runway) / 0.3);
+    @apply inline-flex items-center justify-center px-7 py-3.5 rounded-sm font-semibold text-sm transition-all tracking-wide;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
   .btn-runway:hover {
-    @apply brightness-110 -translate-y-0.5;
-    box-shadow: 0 0 30px hsl(var(--runway) / 0.5);
+    background: hsl(222 40% 22%);
+    transform: translateY(-1px);
   }
 
   .btn-hangar-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-sm font-semibold text-sm transition-all;
-    border: 1px solid hsl(var(--hud) / 0.35);
+    @apply inline-flex items-center justify-center px-7 py-3.5 rounded-sm font-semibold text-sm transition-all tracking-wide;
+    border: 1px solid hsl(var(--border));
     color: hsl(var(--foreground));
-    background: hsl(var(--hud) / 0.05);
+    background: hsl(0 0% 100% / 0.55);
   }
   .btn-hangar-outline:hover {
-    border-color: hsl(var(--hud) / 0.7);
-    color: hsl(var(--hud));
-    box-shadow: 0 0 16px hsl(var(--hud) / 0.2);
+    border-color: hsl(var(--runway) / 0.55);
+    color: hsl(var(--runway-dim));
+    background: hsl(0 0% 100% / 0.9);
   }
 
   .skill-chip {
-    @apply inline-block px-2.5 py-1 text-xs rounded-sm;
-    background: hsl(var(--hud) / 0.08);
-    border: 1px solid hsl(var(--hud) / 0.25);
+    @apply inline-block px-2.5 py-1 text-xs rounded-sm tracking-wide;
+    background: hsl(var(--secondary));
+    border: 1px solid hsl(var(--border));
     color: hsl(var(--muted-foreground));
   }
 
   .skill-badge {
-    @apply flex items-center gap-2 px-3 py-2 rounded-sm border backdrop-blur-sm transition-all duration-300;
-    background: hsl(var(--card) / 0.9);
-    border-color: color-mix(in srgb, var(--tool-color) 40%, transparent);
+    @apply flex items-center gap-2 px-3 py-2 rounded-sm border transition-all duration-300;
+    background: hsl(0 0% 100% / 0.9);
+    border-color: hsl(var(--border));
     color: hsl(var(--foreground));
-    box-shadow: 0 0 12px color-mix(in srgb, var(--tool-color) 25%, transparent);
   }
   .skill-badge:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 24px color-mix(in srgb, var(--tool-color) 45%, transparent);
+    transform: translateY(-2px);
+    border-color: hsl(var(--runway) / 0.45);
   }
 
   .contact-card {
-    @apply hangar-panel p-5 flex items-start gap-4 transition-all;
+    @apply hangar-panel p-6 flex items-start gap-4 transition-all;
   }
   .contact-card:hover {
-    border-color: hsl(var(--hud) / 0.55);
+    border-color: hsl(var(--runway) / 0.4);
   }
 
   .section-hangar,
@@ -147,7 +143,12 @@
   .section-mission,
   .section-approach {
     background: transparent;
-    border-top: 1px solid hsl(var(--hud) / 0.12);
+    border-top: 1px solid hsl(var(--border) / 0.85);
+  }
+
+  .section-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em];
+    color: hsl(var(--runway-dim));
   }
 }
 
@@ -181,7 +182,7 @@
   }
 }
 
-/* ─── Avionics cockpit backdrop ─── */
+/* ─── Refined atelier backdrop (replaces loud avionics) ─── */
 .avionics-root {
   position: fixed;
   inset: 0;
@@ -194,213 +195,46 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 30%, hsl(168 50% 18% / 0.12), transparent 35%),
-    radial-gradient(circle at 80% 70%, hsl(38 60% 30% / 0.06), transparent 40%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      hsl(210 30% 3% / 0.15) 3px,
-      hsl(210 30% 3% / 0.15) 4px
-    ),
-    linear-gradient(180deg, hsl(210 28% 8%), hsl(210 32% 5%));
+    linear-gradient(135deg, hsl(210 24% 98% / 0.4), transparent 40%),
+    linear-gradient(180deg, transparent, hsl(210 20% 92% / 0.35));
 }
 
 .avionics-hud-grid {
   position: absolute;
-  inset: 4% 5%;
-  border: 1px solid hsl(var(--hud) / 0.18);
-  background-image:
-    linear-gradient(hsl(var(--hud) / 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--hud) / 0.06) 1px, transparent 1px),
-    linear-gradient(hsl(var(--hud) / 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--hud) / 0.03) 1px, transparent 1px);
-  background-size:
-    80px 80px,
-    80px 80px,
-    16px 16px,
-    16px 16px;
-  box-shadow:
-    inset 0 0 80px hsl(var(--hud) / 0.05),
-    0 0 40px hsl(var(--hud) / 0.04);
-  border-radius: 4px;
-}
-
-.avionics-hud-grid::before,
-.avionics-hud-grid::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 24px;
-  height: 1px;
-  background: hsl(var(--hud) / 0.45);
-  transform: translateX(-50%);
-}
-.avionics-hud-grid::before { top: 12%; }
-.avionics-hud-grid::after { bottom: 12%; }
-
-.avionics-scanlines {
-  position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    hsl(168 40% 4% / 0.12) 2px,
-    hsl(168 40% 4% / 0.12) 3px
-  );
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-  animation: scanline-drift 8s linear infinite;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(hsl(222 20% 70% / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(222 20% 70% / 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
+}
+
+.avionics-scanlines,
+.avionics-side-rail,
+.avionics-glareshield,
+.avionics-bloom,
+.avionics-bracket {
+  display: none;
 }
 
 .avionics-canopy {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 70% at 50% 45%, transparent 40%, hsl(210 40% 3% / 0.55) 100%),
-    linear-gradient(90deg, hsl(210 35% 3% / 0.55), transparent 12%, transparent 88%, hsl(210 35% 3% / 0.55));
+    radial-gradient(ellipse 80% 55% at 50% 0%, transparent 45%, hsl(210 20% 90% / 0.35) 100%),
+    linear-gradient(90deg, hsl(210 24% 96% / 0.55), transparent 18%, transparent 82%, hsl(210 24% 96% / 0.55));
 }
 
-.avionics-bracket {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  border: 2px solid hsl(var(--hud) / 0.45);
-  box-shadow: 0 0 12px hsl(var(--hud) / 0.15);
-}
-.avionics-bracket-tl {
-  top: 5.5%;
-  left: 6%;
-  border-right: none;
-  border-bottom: none;
-}
-.avionics-bracket-tr {
-  top: 5.5%;
-  right: 6%;
-  border-left: none;
-  border-bottom: none;
-}
-.avionics-bracket-bl {
-  bottom: 7%;
-  left: 6%;
-  border-right: none;
-  border-top: none;
-}
-.avionics-bracket-br {
-  bottom: 7%;
-  right: 6%;
-  border-left: none;
-  border-top: none;
-}
-
-.avionics-side-rail {
-  position: absolute;
-  top: 18%;
-  bottom: 18%;
-  width: 42px;
-  display: none;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  color: hsl(var(--hud) / 0.7);
-  border: 1px solid hsl(var(--hud) / 0.2);
-  background: hsl(210 30% 6% / 0.75);
-  box-shadow: inset 0 0 20px hsl(var(--hud) / 0.06);
-}
-.avionics-side-rail span {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  opacity: 0.85;
-}
-.avionics-side-rail-left { left: 0.75rem; }
-.avionics-side-rail-right { right: 0.75rem; }
-
-@media (min-width: 1024px) {
-  .avionics-side-rail { display: flex; }
-}
-
-.avionics-glareshield {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 1.25rem;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  border: 1px solid hsl(var(--hud) / 0.25);
-  background: linear-gradient(180deg, hsl(210 25% 12% / 0.9), hsl(210 30% 7% / 0.95));
-  box-shadow:
-    0 0 24px hsl(var(--hud) / 0.08),
-    inset 0 1px 0 hsl(var(--hud) / 0.15);
-  border-radius: 2px;
-}
-
-.avionics-led {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: hsl(var(--hud));
-  box-shadow: 0 0 8px hsl(var(--hud) / 0.8);
-  animation: led-blink 2.4s ease-in-out infinite;
-  flex-shrink: 0;
-}
-.avionics-led-amber {
-  background: hsl(var(--runway));
-  box-shadow: 0 0 8px hsl(var(--runway) / 0.8);
-  animation-delay: 0.6s;
-}
-
-.avionics-ticker {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  color: hsl(var(--hud) / 0.85);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: min(70vw, 520px);
-  animation: ticker-glow 3s ease-in-out infinite;
-}
-
-.avionics-bloom {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 40% at 50% 30%, hsl(var(--hud) / 0.07), transparent 60%);
-  mix-blend-mode: screen;
-}
-
-@keyframes scanline-drift {
-  from { background-position: 0 0; }
-  to { background-position: 0 40px; }
-}
-
-@keyframes led-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-
-@keyframes ticker-glow {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-/* ─── Hangar / mission ambient layers ─── */
 .hangar-beams {
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     90deg,
     transparent,
-    transparent 120px,
-    hsl(var(--hud) / 0.05) 120px,
-    hsl(var(--hud) / 0.05) 121px
+    transparent 140px,
+    hsl(222 15% 70% / 0.05) 140px,
+    hsl(222 15% 70% / 0.05) 141px
   );
 }
 
@@ -409,157 +243,58 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      hsl(var(--runway) / 0.06) 0px,
-      hsl(var(--runway) / 0.06) 2px,
-      transparent 2px,
-      transparent 80px
-    ),
-    linear-gradient(180deg, transparent, hsl(var(--hangar-floor)));
+  height: 35%;
+  background: linear-gradient(180deg, transparent, hsl(210 18% 93% / 0.7));
 }
 
 .hangar-doors {
   background:
-    linear-gradient(90deg, hsl(var(--hangar)) 0%, transparent 15%, transparent 85%, hsl(var(--hangar)) 100%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, hsl(var(--hud) / 0.08), transparent 70%);
-}
-
-.runway-lights {
-  position: absolute;
-  bottom: 22%;
-  left: 0;
-  width: 55%;
-  height: 4px;
-  background: repeating-linear-gradient(
-    90deg,
-    hsl(var(--runway)) 0px,
-    hsl(var(--runway)) 20px,
-    transparent 20px,
-    transparent 40px
-  );
-  animation: runway-scroll 2s linear infinite;
-  opacity: 0.6;
-  transform-origin: left center;
-  transform: rotate(-6deg);
+    linear-gradient(90deg, hsl(var(--background)) 0%, transparent 18%, transparent 82%, hsl(var(--background)) 100%),
+    radial-gradient(ellipse 55% 35% at 50% 100%, hsl(var(--runway) / 0.06), transparent 70%);
 }
 
 .launch-pad {
   position: absolute;
-  bottom: 12%;
-  left: 4%;
-  width: 18%;
-  height: 8px;
-  background: linear-gradient(90deg, hsl(var(--steel)), hsl(var(--runway) / 0.7), hsl(var(--steel)));
-  box-shadow: 0 0 30px hsl(var(--runway) / 0.25);
-  border-radius: 2px;
-}
-
-.launch-pad::before {
-  content: "";
-  position: absolute;
-  left: 40%;
-  bottom: 8px;
-  width: 20%;
-  height: 40px;
-  background: linear-gradient(180deg, transparent, hsl(var(--steel-light) / 0.35));
+  bottom: 14%;
+  left: 5%;
+  width: 14%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, hsl(var(--runway) / 0.5), transparent);
 }
 
 .liftoff-plume {
   position: absolute;
-  bottom: 10%;
+  bottom: 12%;
   left: 8%;
-  width: 12%;
-  height: 35%;
-  background: radial-gradient(ellipse at bottom, hsl(var(--runway) / 0.45), transparent 70%);
-  filter: blur(8px);
-  animation: approach-pulse 1.2s ease-in-out infinite;
+  width: 10%;
+  height: 28%;
+  background: radial-gradient(ellipse at bottom, hsl(var(--runway) / 0.18), transparent 70%);
+  filter: blur(10px);
 }
 
 .landing-zone {
   position: absolute;
   bottom: 14%;
   right: 8%;
-  width: 16%;
-  height: 6px;
-  background: repeating-linear-gradient(
-    90deg,
-    hsl(var(--runway)) 0px,
-    hsl(var(--runway)) 12px,
-    transparent 12px,
-    transparent 22px
-  );
-  opacity: 0.55;
-  box-shadow: 0 0 24px hsl(var(--runway) / 0.3);
+  width: 14%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, hsl(var(--runway) / 0.45), transparent);
 }
 
 .starfield {
   position: absolute;
   inset: 0;
+  opacity: 0.25;
   background-image:
-    radial-gradient(1px 1px at 10% 20%, hsl(0 0% 100% / 0.7), transparent),
-    radial-gradient(1px 1px at 30% 40%, hsl(0 0% 100% / 0.5), transparent),
-    radial-gradient(1.5px 1.5px at 50% 15%, hsl(0 0% 100% / 0.8), transparent),
-    radial-gradient(1px 1px at 70% 55%, hsl(0 0% 100% / 0.45), transparent),
-    radial-gradient(1px 1px at 85% 25%, hsl(0 0% 100% / 0.65), transparent),
-    radial-gradient(1.5px 1.5px at 20% 70%, hsl(0 0% 100% / 0.55), transparent),
-    radial-gradient(1px 1px at 60% 80%, hsl(0 0% 100% / 0.4), transparent),
-    radial-gradient(1px 1px at 90% 70%, hsl(0 0% 100% / 0.6), transparent);
-  background-size: 100% 100%;
-  animation: star-twinkle 4s ease-in-out infinite;
+    radial-gradient(1px 1px at 20% 25%, hsl(222 30% 40% / 0.35), transparent),
+    radial-gradient(1px 1px at 70% 40%, hsl(222 30% 40% / 0.25), transparent),
+    radial-gradient(1.5px 1.5px at 45% 15%, hsl(222 30% 40% / 0.3), transparent);
 }
 
-.approach-lights {
-  position: absolute;
-  bottom: 22%;
-  right: 6%;
-  left: auto;
-  width: 4px;
-  height: 50%;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    hsl(var(--runway) / 0.3) 30%,
-    hsl(var(--runway)) 70%,
-    hsl(var(--runway)) 100%
-  );
-  box-shadow:
-    -40px 0 0 hsl(var(--runway) / 0.5),
-    40px 0 0 hsl(var(--runway) / 0.5),
-    -80px 0 0 hsl(var(--runway) / 0.3),
-    80px 0 0 hsl(var(--runway) / 0.3);
-  animation: approach-pulse 1.5s ease-in-out infinite;
-}
-
+.runway-lights,
+.approach-lights,
 .cloud-layer {
-  position: absolute;
-  border-radius: 50%;
-  background: hsl(210 30% 90% / 0.06);
-  filter: blur(40px);
-}
-.cloud-1 {
-  width: 300px;
-  height: 100px;
-  top: 20%;
-  left: 10%;
-  animation: cloud-drift 25s linear infinite;
-}
-.cloud-2 {
-  width: 400px;
-  height: 120px;
-  top: 40%;
-  right: 5%;
-  animation: cloud-drift 35s linear infinite reverse;
-}
-.cloud-3 {
-  width: 250px;
-  height: 80px;
-  top: 60%;
-  left: 40%;
-  animation: cloud-drift 30s linear infinite;
-  animation-delay: -10s;
+  display: none;
 }
 
 /* ─── Skill orbit ─── */
@@ -571,28 +306,12 @@
     rotate(var(--orbit-angle))
     translateX(var(--orbit-radius))
     rotate(calc(-1 * var(--orbit-angle)));
-  animation: orbit-float 6s ease-in-out infinite;
-}
-
-/* ─── Keyframes ─── */
-@keyframes runway-scroll {
-  from { background-position: 0 0; }
-  to { background-position: 80px 0; }
-}
-
-@keyframes approach-pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-@keyframes cloud-drift {
-  from { transform: translateX(-10vw); }
-  to { transform: translateX(10vw); }
+  animation: orbit-float 7s ease-in-out infinite;
 }
 
 @keyframes orbit-float {
   0%, 100% { transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-angle))) translateY(0); }
-  50% { transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-angle))) translateY(-8px); }
+  50% { transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-angle))) translateY(-6px); }
 }
 
 @keyframes orbit-spin-slow {
@@ -606,101 +325,62 @@
 }
 
 @keyframes hub-pulse {
-  0%, 100% { box-shadow: 0 0 20px hsl(var(--sky-glow) / 0.2); }
-  50% { box-shadow: 0 0 40px hsl(var(--sky-glow) / 0.4); }
+  0%, 100% { box-shadow: 0 0 0 1px hsl(var(--border)); }
+  50% { box-shadow: 0 0 0 1px hsl(var(--runway) / 0.35); }
 }
 
 @keyframes engine-thrust {
-  0%, 100% { filter: drop-shadow(0 0 8px hsl(var(--runway) / 0.6)); }
-  50% { filter: drop-shadow(0 0 16px hsl(var(--runway) / 0.9)); }
+  0%, 100% { filter: drop-shadow(0 8px 16px hsl(222 40% 10% / 0.15)); }
+  50% { filter: drop-shadow(0 10px 22px hsl(38 32% 40% / 0.25)); }
 }
 
 @keyframes flight-bob {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  50% { transform: translateY(-3px); }
 }
 
 @keyframes landing-flare {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(2deg); }
-}
-
-@keyframes exhaust {
-  0%, 100% { opacity: 0.8; width: 4rem; }
-  50% { opacity: 1; width: 6rem; }
-}
-
-@keyframes gear-drop {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
+  50% { transform: rotate(1deg); }
 }
 
 @keyframes border-pulse {
-  0%, 100% { border-color: hsl(var(--hud) / 0.35); }
-  50% { border-color: hsl(var(--hud) / 0.75); }
+  0%, 100% { border-color: hsl(var(--runway) / 0.25); }
+  50% { border-color: hsl(var(--runway) / 0.55); }
 }
 
 @keyframes pulse-slow {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  50% { opacity: 0.75; }
 }
-
-.animate-orbit-spin-slow { animation: orbit-spin-slow 40s linear infinite; }
-.animate-orbit-spin-reverse { animation: orbit-spin-reverse 55s linear infinite; }
-.animate-hub-pulse { animation: hub-pulse 3s ease-in-out infinite; }
-.animate-engine-thrust { animation: engine-thrust 0.3s ease-in-out infinite; }
-.animate-flight-bob { animation: flight-bob 2s ease-in-out infinite; }
-.animate-landing-flare { animation: landing-flare 1.5s ease-in-out infinite; }
-.animate-exhaust { animation: exhaust 0.2s ease-in-out infinite; }
-.animate-gear-drop { animation: gear-drop 0.5s ease-out forwards; }
-.animate-border-pulse { animation: border-pulse 2s ease-in-out infinite; }
-.animate-pulse-slow { animation: pulse-slow 2s ease-in-out infinite; }
 
 @keyframes orbit-appear {
   from { opacity: 0; transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(calc(var(--orbit-radius) * 0.5)) rotate(calc(-1 * var(--orbit-angle))) scale(0.5); }
   to { opacity: 1; transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-angle))) scale(1); }
 }
 
-.animate-orbit-appear {
-  animation: orbit-appear 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards, orbit-float 6s ease-in-out infinite;
-  animation-delay: var(--appear-delay, 0s), 1s;
-}
-
 @keyframes approach-flare {
-  0%, 100% { opacity: 0.3; width: 3rem; }
-  50% { opacity: 0.7; width: 5rem; }
+  0%, 100% { opacity: 0.25; width: 3rem; }
+  50% { opacity: 0.5; width: 4.5rem; }
 }
 
-.animate-approach-flare { animation: approach-flare 1.2s ease-in-out infinite; }
-
-@keyframes rocket-plume {
-  0%, 100% { transform: scaleY(1) translateY(0); opacity: 0.9; }
-  50% { transform: scaleY(1.15) translateY(4px); opacity: 1; }
-}
-
-@keyframes rocket-plume-core {
-  0%, 100% { opacity: 0.85; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.2); }
-}
-
-@keyframes rocket-haze {
-  0%, 100% { opacity: 0.35; transform: scale(1); }
-  50% { opacity: 0.55; transform: scale(1.15); }
-}
-
-@keyframes moon-glow {
+@keyframes approach-pulse {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 0.85; }
 }
 
-@keyframes star-twinkle {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
+.animate-orbit-spin-slow { animation: orbit-spin-slow 50s linear infinite; }
+.animate-orbit-spin-reverse { animation: orbit-spin-reverse 65s linear infinite; }
+.animate-hub-pulse { animation: hub-pulse 4s ease-in-out infinite; }
+.animate-engine-thrust { animation: engine-thrust 0.45s ease-in-out infinite; }
+.animate-flight-bob { animation: flight-bob 2.4s ease-in-out infinite; }
+.animate-landing-flare { animation: landing-flare 1.8s ease-in-out infinite; }
+.animate-border-pulse { animation: border-pulse 3s ease-in-out infinite; }
+.animate-pulse-slow { animation: pulse-slow 2.5s ease-in-out infinite; }
+.animate-orbit-appear {
+  animation: orbit-appear 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards, orbit-float 7s ease-in-out infinite;
+  animation-delay: var(--appear-delay, 0s), 1s;
 }
-
-.animate-rocket-plume { animation: rocket-plume 0.18s ease-in-out infinite; transform-origin: top center; }
-.animate-rocket-plume-core { animation: rocket-plume-core 0.15s ease-in-out infinite; transform-origin: top center; }
-.animate-rocket-haze { animation: rocket-haze 0.35s ease-in-out infinite; }
-.animate-moon-glow { animation: moon-glow 3s ease-in-out infinite; }
+.animate-approach-flare { animation: approach-flare 1.4s ease-in-out infinite; }
 
 .delay-100 { animation-delay: 0.1s; }

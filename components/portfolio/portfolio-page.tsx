@@ -11,10 +11,9 @@ import {
   FileText,
   GraduationCap,
   Briefcase,
-  Rocket,
 } from "lucide-react";
 import { CVDownloadButton } from "@/components/cv-download-button";
-import { FlightJourney } from "./flight-journey";
+import { DeliveryProgress } from "./delivery-progress";
 import { AvionicsBackdrop } from "./avionics-backdrop";
 import { SkillOrbit } from "./skill-orbit";
 import { ScrollReveal } from "./scroll-reveal";
@@ -24,125 +23,137 @@ import {
   timelineItems,
   certifications,
   projects,
+  profile,
+  cvDownloads,
 } from "@/lib/portfolio-data";
+
+function SectionHeading({
+  index,
+  eyebrow,
+  title,
+  description,
+}: {
+  index: string;
+  eyebrow: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <ScrollReveal>
+      <div className="flex items-center gap-3 mb-5">
+        <span className="runway-marker">{index}</span>
+        <span className="section-label">{eyebrow}</span>
+      </div>
+      <h2 className="font-headline text-4xl sm:text-5xl md:text-[3.5rem] font-medium leading-[1.05] mb-5">
+        {title}
+      </h2>
+      {description && (
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-12">
+          {description}
+        </p>
+      )}
+    </ScrollReveal>
+  );
+}
 
 export function PortfolioPage() {
   return (
     <>
       <AvionicsBackdrop />
-      <FlightJourney />
+      <DeliveryProgress />
 
-      <main className="relative z-10 pt-16">
-        {/* ═══ HANGAR — Hero ═══ */}
+      <main className="relative z-10 pt-[4.25rem]">
+        {/* Hero */}
         <section
           id="hangar"
-          className="relative min-h-[100dvh] flex items-center overflow-hidden section-hangar"
+          className="relative min-h-[100dvh] flex items-center overflow-hidden"
         >
           <div className="absolute inset-0 hangar-doors" aria-hidden />
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-hangar-floor to-transparent" aria-hidden />
 
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-12 items-center py-20">
-            <div>
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-10 w-full grid lg:grid-cols-12 gap-12 lg:gap-16 items-center py-20 lg:py-28">
+            <div className="lg:col-span-7">
               <ScrollReveal>
-                <div className="inline-flex items-center gap-2 hangar-badge mb-6">
-                  <Rocket className="w-4 h-4 text-runway" />
-                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                    Falcon Mission · Launch Pad · Go for Liftoff
-                  </span>
-                </div>
+                <p className="section-label mb-6">Technical Delivery</p>
               </ScrollReveal>
 
-              <ScrollReveal delay={100}>
-                <h1 className="font-headline text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[0.95] mb-4">
+              <ScrollReveal delay={80}>
+                <h1 className="font-headline text-[clamp(3rem,7vw,5.5rem)] font-medium leading-[0.95] mb-6 text-balance">
                   Shashank
                   <span className="block text-runway">Sundar</span>
                 </h1>
               </ScrollReveal>
 
-              <ScrollReveal delay={200}>
-                <p className="text-xl sm:text-2xl text-steel-light font-medium mb-2">
-                  Power Platform Developer
+              <ScrollReveal delay={160}>
+                <p className="text-xl sm:text-2xl font-headline text-foreground/90 mb-2">
+                  {profile.title}
                 </p>
-                <p className="text-base sm:text-lg text-muted-foreground mb-8">
-                  SharePoint · Power BI · Microsoft 365
-                </p>
-              </ScrollReveal>
-
-              <ScrollReveal delay={300}>
-                <p className="text-muted-foreground leading-relaxed max-w-lg mb-8">
-                  MSc Aerospace Technologies (Nottingham, UK). 5+ years
-                  delivering enterprise solutions for clients across the USA, UK,
-                  Canada, and Japan.
+                <p className="text-sm sm:text-base uppercase tracking-[0.14em] text-muted-foreground mb-8">
+                  {profile.subtitle}
                 </p>
               </ScrollReveal>
 
-              <ScrollReveal delay={400}>
+              <ScrollReveal delay={240}>
+                <p className="text-muted-foreground leading-relaxed max-w-xl mb-10 text-[15px] sm:text-base">
+                  {profile.summary}
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal delay={320}>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#takeoff" className="btn-runway">
-                    Begin Journey ↓
+                  <a href="#mission" className="btn-runway">
+                    View Selected Work
                   </a>
-                  <a href="#mission" className="btn-hangar-outline">
-                    View Missions
+                  <a href="#takeoff" className="btn-hangar-outline">
+                    Profile
                   </a>
                   <CVDownloadButton />
                 </div>
               </ScrollReveal>
             </div>
 
-            <ScrollReveal direction="scale" delay={200}>
-              <div className="relative aspect-[4/5] max-w-md mx-auto lg:ml-auto">
-                <div className="absolute -inset-3 border-2 border-runway/30 rounded-sm animate-border-pulse" />
-                <div className="relative aspect-[4/5] overflow-hidden rounded-sm hangar-panel">
+            <ScrollReveal direction="scale" delay={180} className="lg:col-span-5">
+              <div className="relative max-w-md mx-auto lg:ml-auto">
+                <div className="absolute -inset-px bg-gradient-to-b from-runway/25 via-border to-border" />
+                <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
                   <Image
                     src="/images/profileimg.jpeg"
                     alt="Shashank Sundar"
                     fill
                     priority
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 40vw"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-hangar via-transparent to-runway/5" />
                 </div>
-                <div className="absolute -bottom-4 -left-4 hangar-panel px-4 py-2 font-mono text-xs text-runway">
-                  CDR · SS-2301
+                <div className="mt-4 flex items-center justify-between text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-runway" />
+                    Chennai
+                  </span>
+                  <span>MSc Nottingham</span>
                 </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* ═══ TAKEOFF — About ═══ */}
+        {/* Profile */}
         <section id="takeoff" className="section-runway py-24 sm:py-32">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-            <ScrollReveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="runway-marker">01</span>
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                  Ascent · Mission Brief
-                </span>
-              </div>
-              <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-                Mission Brief
-              </h2>
-            </ScrollReveal>
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
+            <SectionHeading
+              index="01"
+              eyebrow="Professional Profile"
+              title="Clarity, delivery, and outcomes."
+              description="Business analysis, Agile leadership and Microsoft technology expertise — guiding multidisciplinary teams from discovery through deployment for clients across the USA, UK, Canada and Japan."
+            />
 
-            <ScrollReveal delay={150}>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-12">
-                Power Platform and Microsoft 365 professional with hands-on
-                experience across Power Apps, Power Automate, SharePoint, SPFx,
-                React.js, TypeScript, and Power BI — integrating Microsoft Graph,
-                Azure, Dynamics 365, SAP, and enterprise systems.
-              </p>
-            </ScrollReveal>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
               {achievements.map((item, i) => (
-                <ScrollReveal key={i} delay={i * 80} direction="up">
-                  <div className="hangar-panel p-5 h-full hover:border-runway/50 transition-colors group">
-                    <span className="font-mono text-runway text-sm">
+                <ScrollReveal key={i} delay={i * 70} direction="up">
+                  <div className="hangar-panel p-6 h-full group">
+                    <span className="font-headline text-2xl text-runway">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="text-sm sm:text-base text-muted-foreground mt-3 leading-relaxed group-hover:text-foreground transition-colors">
+                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed group-hover:text-foreground transition-colors">
                       {item}
                     </p>
                   </div>
@@ -151,17 +162,16 @@ export function PortfolioPage() {
             </div>
 
             <ScrollReveal>
-              <h3 className="font-headline text-2xl sm:text-3xl font-semibold mb-8 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-runway" />
-                Flight Log — Experience
+              <h3 className="font-headline text-3xl font-medium mb-8">
+                Experience & Education
               </h3>
             </ScrollReveal>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {timelineItems.map((item, i) => (
-                <ScrollReveal key={i} delay={i * 100} direction="left">
-                  <div className="hangar-panel p-6 sm:p-8 flex gap-5 hover:border-runway/40 transition-all">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-runway/10 flex items-center justify-center">
+                <ScrollReveal key={i} delay={i * 80} direction="left">
+                  <div className="hangar-panel p-6 sm:p-8 flex gap-5">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-sm bg-secondary border border-border flex items-center justify-center">
                       {item.type === "education" ? (
                         <GraduationCap className="w-5 h-5 text-runway" />
                       ) : (
@@ -169,17 +179,15 @@ export function PortfolioPage() {
                       )}
                     </div>
                     <div>
-                      <span className="text-xs font-mono text-runway uppercase tracking-wider">
-                        {item.period}
-                      </span>
-                      <h4 className="font-headline text-xl font-semibold mt-1">
+                      <span className="section-label">{item.period}</span>
+                      <h4 className="font-headline text-xl sm:text-2xl font-medium mt-2">
                         {item.title}
                       </h4>
-                      <p className="text-runway/80 font-medium">
+                      <p className="text-runway mt-1 text-sm font-medium tracking-wide">
                         {item.organization} · {item.location}
                       </p>
                       {"description" in item && item.description && (
-                        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                        <p className="text-muted-foreground mt-3 text-sm leading-relaxed max-w-3xl">
                           {item.description}
                         </p>
                       )}
@@ -191,32 +199,23 @@ export function PortfolioPage() {
           </div>
         </section>
 
-        {/* ═══ CRUISE — Skills ═══ */}
+        {/* Expertise */}
         <section id="cruise" className="section-sky py-24 sm:py-32 relative overflow-hidden">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-            <ScrollReveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="runway-marker">02</span>
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-sky-glow">
-                  Transit · Navigation Systems
-                </span>
-              </div>
-              <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-                Navigation Systems
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mb-12">
-                Skills and tools powering every mission — orbiting the cockpit
-                of enterprise delivery.
-              </p>
-            </ScrollReveal>
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
+            <SectionHeading
+              index="02"
+              eyebrow="Capabilities"
+              title="Expertise that travels well."
+              description="Delivery leadership, analysis discipline and digital platforms — organised for enterprise outcomes."
+            />
 
             <SkillOrbit />
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
               {skillGroups.map((group, i) => (
-                <ScrollReveal key={group.title} delay={i * 100} direction="scale">
-                  <div className="hangar-panel p-5 hover:border-sky-glow/40 transition-all hover:-translate-y-1">
-                    <h3 className="font-headline text-lg font-semibold text-sky-glow mb-2">
+                <ScrollReveal key={group.title} delay={i * 80} direction="scale">
+                  <div className="hangar-panel p-6 h-full hover:-translate-y-0.5 transition-transform">
+                    <h3 className="font-headline text-xl font-medium mb-3">
                       {group.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -229,56 +228,49 @@ export function PortfolioPage() {
           </div>
         </section>
 
-        {/* ═══ MISSION — Projects ═══ */}
+        {/* Work */}
         <section id="mission" className="section-mission py-24 sm:py-32">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-            <ScrollReveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="runway-marker">03</span>
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                  Lunar Manifest · Missions
-                </span>
-              </div>
-              <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
-                Flight Manifest
-              </h2>
-            </ScrollReveal>
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
+            <SectionHeading
+              index="03"
+              eyebrow="Selected Work"
+              title="Enterprise engagements."
+            />
 
-            <div className="space-y-6">
+            <div className="divide-y divide-border border-y border-border">
               {projects.map((project, i) => (
-                <ScrollReveal key={project.id} delay={i * 80} direction="right">
-                  <article className="hangar-panel p-6 sm:p-8 group hover:border-runway/50 transition-all">
-                    <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                      <div className="font-mono text-runway text-3xl font-bold opacity-40 group-hover:opacity-100 transition-opacity">
-                        {String(i + 1).padStart(2, "0")}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-headline text-2xl sm:text-3xl font-semibold group-hover:text-runway transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-runway/80 font-medium mt-1">
-                          {project.client}
-                        </p>
-                        <p className="text-muted-foreground mt-4 leading-relaxed">
-                          {project.solution}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {project.techStack.map((tech) => (
-                            <span key={tech} className="skill-chip">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="lg:w-48 flex-shrink-0">
-                        <div className="bg-runway/10 border border-runway/30 rounded-sm p-4">
-                          <span className="text-xs font-mono uppercase text-runway tracking-wider">
-                            Outcome
+                <ScrollReveal key={project.id} delay={i * 60} direction="right">
+                  <article className="py-8 sm:py-10 group grid lg:grid-cols-12 gap-6 lg:gap-8">
+                    <div className="lg:col-span-1 font-headline text-2xl text-runway/50 group-hover:text-runway transition-colors">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <div className="lg:col-span-7">
+                      <h3 className="font-headline text-2xl sm:text-3xl font-medium">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-runway mt-2 tracking-wide">
+                        {project.client}
+                      </p>
+                      <p className="text-muted-foreground mt-4 leading-relaxed text-sm sm:text-base">
+                        {project.solution}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-5">
+                        {project.techStack.map((tech) => (
+                          <span key={tech} className="skill-chip">
+                            {tech}
                           </span>
-                          <p className="text-sm font-semibold text-foreground mt-2">
-                            {project.impact[0]}
-                          </p>
-                        </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="lg:col-span-4">
+                      <div className="hangar-panel p-5 h-full">
+                        <span className="section-label">Outcome</span>
+                        <p className="text-sm font-medium text-foreground mt-3 leading-relaxed">
+                          {project.impact[0]}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-4 uppercase tracking-[0.14em]">
+                          {project.role}
+                        </p>
                       </div>
                     </div>
                   </article>
@@ -288,32 +280,26 @@ export function PortfolioPage() {
           </div>
         </section>
 
-        {/* ═══ LANDING — Certs & Contact ═══ */}
+        {/* Contact */}
         <section id="landing" className="section-approach py-24 sm:py-32">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-            <ScrollReveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="runway-marker">04</span>
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-runway">
-                  Re-entry · Soft Landing
-                </span>
-              </div>
-              <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
-                Splashdown Complete
-              </h2>
-            </ScrollReveal>
+          <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
+            <SectionHeading
+              index="04"
+              eyebrow="Credentials & Contact"
+              title="Let’s discuss the next brief."
+            />
 
-            <ScrollReveal delay={100}>
-              <h3 className="font-headline text-2xl font-semibold mb-6 text-sky-glow">
-                Certifications & Credentials
+            <ScrollReveal>
+              <h3 className="font-headline text-2xl font-medium mb-6">
+                Certifications
               </h3>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-20">
+            <div className="grid sm:grid-cols-2 gap-4 mb-16">
               {certifications.map((cert, i) => {
                 const inner = (
                   <>
-                    <FileText className="w-5 h-5 text-runway flex-shrink-0" />
+                    <FileText className="w-5 h-5 text-runway flex-shrink-0 mt-0.5" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-medium text-foreground group-hover:text-runway transition-colors">
                         {cert.name}
@@ -334,10 +320,10 @@ export function PortfolioPage() {
                 );
 
                 const cls =
-                  "hangar-panel p-5 flex gap-4 group hover:border-runway/50 transition-all";
+                  "hangar-panel p-5 flex gap-4 group hover:border-runway/40 transition-all";
 
                 return cert.file ? (
-                  <ScrollReveal key={cert.name} delay={i * 60}>
+                  <ScrollReveal key={cert.name} delay={i * 50}>
                     <Link
                       href={encodeURI(cert.file)}
                       target="_blank"
@@ -348,7 +334,7 @@ export function PortfolioPage() {
                     </Link>
                   </ScrollReveal>
                 ) : (
-                  <ScrollReveal key={cert.name} delay={i * 60}>
+                  <ScrollReveal key={cert.name} delay={i * 50}>
                     <div className={cls}>{inner}</div>
                   </ScrollReveal>
                 );
@@ -356,8 +342,33 @@ export function PortfolioPage() {
             </div>
 
             <ScrollReveal>
-              <h3 className="font-headline text-2xl font-semibold mb-6">
-                Contact Tower
+              <h3 className="font-headline text-2xl font-medium mb-6">
+                Curriculum Vitae
+              </h3>
+            </ScrollReveal>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-16">
+              {cvDownloads.map((cv, i) => (
+                <ScrollReveal key={cv.file} delay={i * 40}>
+                  <a
+                    href={encodeURI(cv.file)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hangar-panel p-4 flex items-center gap-3 group hover:border-runway/40 transition-all"
+                  >
+                    <FileText className="w-4 h-4 text-runway flex-shrink-0" />
+                    <span className="text-sm font-medium group-hover:text-runway transition-colors">
+                      {cv.label}
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-runway ml-auto opacity-50" />
+                  </a>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <ScrollReveal>
+              <h3 className="font-headline text-2xl font-medium mb-6">
+                Contact
               </h3>
             </ScrollReveal>
 
@@ -366,32 +377,28 @@ export function PortfolioPage() {
                 <a href="tel:+918838731384" className="contact-card group">
                   <Phone className="w-5 h-5 text-runway" />
                   <div>
-                    <span className="text-xs font-mono uppercase text-runway tracking-wider">
-                      Phone
-                    </span>
-                    <p className="font-medium group-hover:text-runway transition-colors">
+                    <span className="section-label">Phone</span>
+                    <p className="font-medium mt-2 group-hover:text-runway transition-colors">
                       +91 883-873-1384
                     </p>
                   </div>
                 </a>
               </ScrollReveal>
-              <ScrollReveal delay={100}>
+              <ScrollReveal delay={80}>
                 <a
                   href="mailto:sundarshashank@gmail.com"
                   className="contact-card group"
                 >
                   <Mail className="w-5 h-5 text-runway" />
                   <div>
-                    <span className="text-xs font-mono uppercase text-runway tracking-wider">
-                      Email
-                    </span>
-                    <p className="font-medium group-hover:text-runway transition-colors break-all">
+                    <span className="section-label">Email</span>
+                    <p className="font-medium mt-2 group-hover:text-runway transition-colors break-all">
                       sundarshashank@gmail.com
                     </p>
                   </div>
                 </a>
               </ScrollReveal>
-              <ScrollReveal delay={200}>
+              <ScrollReveal delay={160}>
                 <Link
                   href="https://www.linkedin.com/in/shashank2301/"
                   target="_blank"
@@ -400,10 +407,8 @@ export function PortfolioPage() {
                 >
                   <Linkedin className="w-5 h-5 text-runway" />
                   <div>
-                    <span className="text-xs font-mono uppercase text-runway tracking-wider">
-                      LinkedIn
-                    </span>
-                    <p className="font-medium group-hover:text-runway transition-colors">
+                    <span className="section-label">LinkedIn</span>
+                    <p className="font-medium mt-2 group-hover:text-runway transition-colors">
                       shashank2301
                     </p>
                   </div>
@@ -411,13 +416,11 @@ export function PortfolioPage() {
               </ScrollReveal>
             </div>
 
-            <ScrollReveal delay={300}>
-              <div className="mt-20 text-center">
-                <p className="font-mono text-xs uppercase tracking-[0.3em] text-runway/60 mb-2">
-                  Mission Complete
-                </p>
+            <ScrollReveal delay={220}>
+              <div className="mt-20 pt-8 border-t border-border text-center">
+                <p className="section-label mb-2">Based in Chennai</p>
                 <p className="text-muted-foreground text-sm">
-                  Chennai, India · Available for global missions
+                  Available for international delivery roles
                 </p>
               </div>
             </ScrollReveal>
